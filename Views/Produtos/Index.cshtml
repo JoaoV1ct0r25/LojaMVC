@@ -1,0 +1,57 @@
+﻿@model IEnumerable<LojaMVC.Models.Produto>
+
+@{
+    ViewData["Title"] = "Administrar Produtos";
+}
+
+<h1>Administrar Produtos</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">+ Novo Produto</a>
+</p>
+
+<form asp-action="Index" method="get" class="row mb-4">
+    <div class="col-md-4">
+        <input type="text" name="buscaNome" class="form-control" placeholder="Buscar por nome..." value="@ViewData["BuscaNome"]" />
+    </div>
+    <div class="col-md-4">
+        <input type="text" name="buscaCategoria" class="form-control" placeholder="Buscar por categoria..." value="@ViewData["BuscaCategoria"]" />
+    </div>
+    <div class="col-md-4">
+        <button type="submit" class="btn btn-primary">Pesquisar</button>
+        <a asp-action="Index" class="btn btn-secondary">Limpar</a>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nome</td>
+                <td>@item.Categoria</td>
+                <td>R$ @item.Preco.ToString("F2")</td>
+                <td>@item.Estoque</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (!Model.Any())
+{
+    <p class="text-muted">Nenhum produto cadastrado ainda.</p>
+}

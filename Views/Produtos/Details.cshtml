@@ -1,0 +1,37 @@
+﻿@model LojaMVC.Models.Produto
+
+@{
+    ViewData["Title"] = "Detalhes do Produto";
+}
+
+<h1>Detalhes do Produto</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        @if (!string.IsNullOrEmpty(Model.ImagemUrl))
+        {
+            <img src="@Model.ImagemUrl" class="img-fluid mb-3" alt="@Model.Nome" />
+        }
+        <dl class="row">
+            <dt class="col-sm-4">Nome</dt>
+            <dd class="col-sm-8">@Model.Nome</dd>
+
+            <dt class="col-sm-4">Descrição</dt>
+            <dd class="col-sm-8">@Model.Descricao</dd>
+
+            <dt class="col-sm-4">Preço</dt>
+            <dd class="col-sm-8">R$ @Model.Preco.ToString("F2")</dd>
+
+            <dt class="col-sm-4">Categoria</dt>
+            <dd class="col-sm-8">@Model.Categoria</dd>
+
+            <dt class="col-sm-4">Estoque</dt>
+            <dd class="col-sm-8">@Model.Estoque</dd>
+
+            <dt class="col-sm-4">Data de Cadastro</dt>
+            <dd class="col-sm-8">@Model.DataCadastro.ToString("dd/MM/yyyy")</dd>
+        </dl>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Editar</a>
+        <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+    </div>
+</div>
