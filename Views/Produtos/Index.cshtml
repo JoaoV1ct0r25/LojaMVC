@@ -4,54 +4,50 @@
     ViewData["Title"] = "Administrar Produtos";
 }
 
-<h1>Administrar Produtos</h1>
+<div class="admin-header">
+    <h1>⚙️ Administrar Produtos</h1>
+    <a asp-action="Create" class="btn-azul">+ Novo Produto</a>
+</div>
 
-<p>
-    <a asp-action="Create" class="btn btn-success">+ Novo Produto</a>
-</p>
-
-<form asp-action="Index" method="get" class="row mb-4">
-    <div class="col-md-4">
-        <input type="text" name="buscaNome" class="form-control" placeholder="Buscar por nome..." value="@ViewData["BuscaNome"]" />
-    </div>
-    <div class="col-md-4">
-        <input type="text" name="buscaCategoria" class="form-control" placeholder="Buscar por categoria..." value="@ViewData["BuscaCategoria"]" />
-    </div>
-    <div class="col-md-4">
-        <button type="submit" class="btn btn-primary">Pesquisar</button>
-        <a asp-action="Index" class="btn btn-secondary">Limpar</a>
-    </div>
+<form asp-action="Index" method="get" class="busca-form">
+    <input type="text" name="buscaNome" placeholder="🔍 Buscar por nome..." value="@ViewData["BuscaNome"]" />
+    <input type="text" name="buscaCategoria" placeholder="📂 Buscar por categoria..." value="@ViewData["BuscaCategoria"]" />
+    <button type="submit" class="btn-azul">Buscar</button>
+    <a asp-action="Index" class="btn-secundario">Limpar</a>
 </form>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Categoria</th>
-            <th>Preço</th>
-            <th>Estoque</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="tabela-admin">
+    <table class="table table-borderless mb-0">
+        <thead>
             <tr>
-                <td>@item.Nome</td>
-                <td>@item.Categoria</td>
-                <td>R$ @item.Preco.ToString("F2")</td>
-                <td>@item.Estoque</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detalhes</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Excluir</a>
-                </td>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Preço</th>
+                <th>Estoque</th>
+                <th>Ações</th>
             </tr>
-        }
-    </tbody>
-</table>
-
-@if (!Model.Any())
-{
-    <p class="text-muted">Nenhum produto cadastrado ainda.</p>
-}
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><strong>@item.Nome</strong></td>
+                    <td><span style="background:var(--azul-claro);color:var(--azul-escuro);padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;">@item.Categoria</span></td>
+                    <td style="font-weight:600;color:var(--azul-escuro);">R$ @item.Preco.ToString("F2")</td>
+                    <td>@item.Estoque un.</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning me-1">✏️ Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info me-1">👁️ Detalhes</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">🗑️ Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (!Model.Any())
+    {
+        <div class="sem-resultado">
+            <p>Nenhum produto cadastrado ainda.</p>
+        </div>
+    }
+</div>

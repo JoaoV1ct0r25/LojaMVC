@@ -2,10 +2,38 @@
     ViewData["Title"] = "Início";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Bem-vindo à Loja Exemplo</h1>
-    <p class="lead">
-        Os melhores produtos com os melhores preços, tudo em um só lugar.
-    </p>
-    <a asp-controller="Home" asp-action="Sobre" class="btn btn-primary mt-3">Conheça nossa história</a>
+<div class="hero">
+    <p class="hero-label">Bem-vindo à nossa loja</p>
+    <h1>Os melhores produtos,<br />num só lugar</h1>
+    <p>Seleção cuidadosa de itens com qualidade e praticidade que você precisa.</p>
+    <a asp-controller="Produtos" asp-action="Vitrine" class="btn-primario">Ver produtos →</a>
+</div>
+
+<div class="secao-titulo">
+    <p class="secao-label">Por que nos escolher</p>
+    <h2>Simples, rápido e confiável</h2>
+</div>
+
+<div class="row g-4 mb-5">
+    <div class="col-md-4">
+        <div class="feature-card">
+            <span class="feature-icon">📦</span>
+            <h5>Variedade</h5>
+            <p>Produtos selecionados para atender diferentes necessidades e estilos.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card">
+            <span class="feature-icon">✅</span>
+            <h5>Qualidade</h5>
+            <p>Cada item é escolhido com atenção à qualidade e ao custo-benefício.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="feature-card">
+            <span class="feature-icon">💬</span>
+            <h5>Atendimento</h5>
+            <p>Estamos disponíveis para tirar dúvidas e garantir sua satisfação.</p>
+        </div>
+    </div>
 </div>

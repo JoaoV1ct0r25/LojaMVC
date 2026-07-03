@@ -4,42 +4,47 @@
     ViewData["Title"] = "Produtos";
 }
 
-<h1 class="text-center mb-4">Nossos Produtos</h1>
-
-<form asp-action="Vitrine" method="get" class="row mb-4">
-    <div class="col-md-4">
-        <input type="text" name="buscaNome" class="form-control" placeholder="Buscar por nome..." value="@ViewData["BuscaNome"]" />
-    </div>
-    <div class="col-md-4">
-        <input type="text" name="buscaCategoria" class="form-control" placeholder="Buscar por categoria..." value="@ViewData["BuscaCategoria"]" />
-    </div>
-    <div class="col-md-4">
-        <button type="submit" class="btn btn-primary">Pesquisar</button>
-        <a asp-action="Vitrine" class="btn btn-secondary">Limpar</a>
-    </div>
-</form>
-
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                @if (!string.IsNullOrEmpty(item.ImagemUrl))
-                {
-                    <img src="@item.ImagemUrl" class="card-img-top" alt="@item.Nome" style="height:200px;object-fit:cover;" />
-                }
-                <div class="card-body">
-                    <h5 class="card-title">@item.Nome</h5>
-                    <p class="card-text">@item.Descricao</p>
-                    <p class="card-text"><strong>R$ @item.Preco.ToString("F2")</strong></p>
-                    <span class="badge bg-secondary">@item.Categoria</span>
-                </div>
-            </div>
-        </div>
-    }
+<div class="secao-titulo">
+    <p class="secao-label">Catálogo</p>
+    <h2>Nossos Produtos</h2>
 </div>
+
+<form asp-action="Vitrine" method="get" class="busca-form">
+    <input type="text" name="buscaNome" placeholder="🔍 Buscar por nome..." value="@ViewData["BuscaNome"]" />
+    <input type="text" name="buscaCategoria" placeholder="📂 Buscar por categoria..." value="@ViewData["BuscaCategoria"]" />
+    <button type="submit" class="btn-azul">Buscar</button>
+    <a asp-action="Vitrine" class="btn-secundario">Limpar</a>
+</form>
 
 @if (!Model.Any())
 {
-    <p class="text-center text-muted">Nenhum produto encontrado.</p>
+    <div class="sem-resultado">
+        <p>😕 Nenhum produto encontrado.</p>
+    </div>
+}
+else
+{
+    <div class="produto-grid">
+        @foreach (var item in Model)
+        {
+            <div class="produto-card">
+                <div class="produto-card-imagem">
+                    @if (!string.IsNullOrEmpty(item.ImagemUrl))
+                    {
+                        <img src="@item.ImagemUrl" alt="@item.Nome" />
+                    }
+                    else
+                    {
+                        <span class="sem-imagem">📦</span>
+                    }
+                </div>
+                <div class="produto-card-body">
+                    <p class="produto-card-categoria">@item.Categoria</p>
+                    <p class="produto-card-nome">@item.Nome</p>
+                    <p class="produto-card-descricao">@item.Descricao</p>
+                    <p class="produto-card-preco">R$ @item.Preco.ToString("F2")</p>
+                </div>
+            </div>
+        }
+    </div>
 }
