@@ -135,9 +135,9 @@ Resposta HTTP
 
 ---
 
-## 👨‍💻 Desenvolvido por
+## 👨‍💻 Desenvolvido por João Victor
 
-Feito com dedicação como projeto final da disciplina de Desenvolvimento Web.
+Feito com dedicação como projeto final da disciplina de Programação Web II.
 
 **Tecnologia:** ASP.NET Core MVC | **Banco:** SQL Server | **Linguagem:** C#
 
