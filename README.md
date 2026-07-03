@@ -74,7 +74,7 @@ LojaMVC/
 
 1. **Clone o repositório**
 ```bash
-   git clone https://github.com/seu-usuario/loja-mvc.git
+   git clone (https://github.com/JoaoV1ct0r25/LojaMVC.git)
 ```
 
 2. **Abra a solução no Visual Studio**
