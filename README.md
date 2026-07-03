@@ -45,21 +45,37 @@ A LojaMVC é uma aplicação web que simula uma loja de produtos com estrutura c
 
 LojaMVC/
 ├── Controllers/
+
 │   ├── HomeController.cs        # Páginas públicas (Início, Sobre, Contato)
+
 │   ├── ProdutosController.cs    # CRUD de produtos + vitrine pública
+
 │   └── ContaController.cs       # Login, cadastro e logout
+
 ├── Models/
+
 │   ├── Produto.cs               # Model de produto com validações
+
 │   └── ApplicationUser.cs       # Usuário personalizado (Identity)
+
 ├── Views/
+
 │   ├── Home/                    # Início, Sobre, Contato
+
 │   ├── Produtos/                # Index, Create, Edit, Delete, Details, Vitrine
+
 │   ├── Conta/                   # Login, Cadastro
+
 │   └── Shared/                  # Layout e partials
+
 ├── Data/
+
 │   └── ApplicationDbContext.cs  # Contexto do banco de dados
+
 └── wwwroot/
+
 └── css/site.css             # Estilos personalizados
+
 
 ---
 
